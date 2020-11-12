@@ -3,21 +3,16 @@ import { Text, StyleSheet, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import PokemonScreen from './PokemonScreen';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import PokedexSVG from '../images/pokemon-icons/pokedex.svg';
+import PokeballsSVG from '../images/pokemon-icons/pokeballs.svg';
+import PikachuSVG from '../images/pokemon-icons/pikachu-2.svg';
 
-function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Pokedex Home!</Text>
-    </View>
-  );
-}
-
-function SettingsScreen() {
+function ItemsScreen() {
   return(
     <View style={styles.container}>
-      <Text>Pokedex Settings!</Text>
+      <Text>Pokemon Items!</Text>
     </View>
   );
 }
@@ -36,32 +31,33 @@ export default function AppNavigator(){
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: 'white',
+        activeTintColor: 'snow',
+        inactiveTintColor: 'lightsteelblue',
         labelStyle: {
-          fontSize: 12,
+          fontSize: 13,
         },
         style: {
-          backgroundColor: 'maroon',
+          backgroundColor: 'crimson',
           height: 100,
         },
       }}
     >
       <Tab.Screen 
         name="Home" 
-        component={HomeScreen} 
+        component={PokemonScreen} 
         options={{
-          tabBarLabel: 'Pok\xE9dex',
+          tabBarLabel: 'Pok\xE9mon',
           tabBarIcon: ({ color, size }) => (
-            <PokedexSVG height={45} width={45} />
+            <PikachuSVG height={40} width={40} />
           ),
         }}
       />
       <Tab.Screen 
-        name="Settings" 
-        component={SettingsScreen} 
+        name="Items" 
+        component={ItemsScreen} 
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="ios-cog" size={45} color='#D3EFF4' />
+            <PokeballsSVG height={40} width={40} />
           )
         }}
       />
@@ -70,7 +66,7 @@ export default function AppNavigator(){
         component={CreditsScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="ios-information-circle-outline" size={45} color='#D3EFF4' />
+            <Ionicons name="ios-information-circle-outline" size={45} color='white' />
           )
         }}
       />
