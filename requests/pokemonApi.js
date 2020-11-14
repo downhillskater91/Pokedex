@@ -10,7 +10,8 @@ export const getAllPokemonAsync = async () => {
 
     result.name = result.name.charAt(0).toUpperCase() + result.name.slice(1);
     result.id = id;
-    result.sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+    //result.sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+    result.sprite = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
   });
 
   return pokemon;

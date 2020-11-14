@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import PokemonScreen from './PokemonScreen';
+import PokemonDetails from './PokemonDetails';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import PokeballsSVG from '../images/pokemon-icons/pokeballs.svg';
@@ -26,25 +27,53 @@ function CreditsScreen() {
 }
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+const PokemonStructure = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: 'snow',
+        headerStyle: {
+          backgroundColor: 'crimson',
+          borderBottomWidth: 2,
+          borderBottomColor: 'black',
+        },
+      }}
+    >
+      <Stack.Screen 
+        name={"Pok\xE9mon"}
+        component={PokemonScreen}
+      />
+      <Stack.Screen
+        name={"Details"}
+        component={PokemonDetails}
+        options={({ route }) => ({ title: route.params.pokemon.name })}
+      />
+    </Stack.Navigator>
+  );
+}
 
 export default function AppNavigator(){
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: 'snow',
-        inactiveTintColor: 'lightsteelblue',
+        activeTintColor: 'crimson',
+        inactiveTintColor: 'gray',
         labelStyle: {
           fontSize: 13,
         },
         style: {
-          backgroundColor: 'crimson',
+          backgroundColor: 'snow',
           height: 100,
+          borderTopColor: 'black',
+          borderTopWidth: 2,
         },
       }}
     >
       <Tab.Screen 
         name="Home" 
-        component={PokemonScreen} 
+        component={PokemonStructure} 
         options={{
           tabBarLabel: 'Pok\xE9mon',
           tabBarIcon: ({ color, size }) => (
@@ -66,7 +95,7 @@ export default function AppNavigator(){
         component={CreditsScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="ios-information-circle-outline" size={45} color='white' />
+            <Ionicons name="ios-information-circle-outline" size={45} color='gray' />
           )
         }}
       />
